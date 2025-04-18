@@ -1,0 +1,1 @@
+export const base_url_user = import.meta.env.VITE_BASE_URL

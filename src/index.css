@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+*{
+  font-family: "Nunito", sans-serif;
+}
+
+a.active{
+  color: rgb(130, 130, 255);
+}
