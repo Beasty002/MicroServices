@@ -1,9 +1,36 @@
 @import "tailwindcss";
 
-*{
+* {
   font-family: "Nunito", sans-serif;
 }
 
-a.active{
+a.active {
   color: rgb(130, 130, 255);
+}
+
+/*  */
+.table {
+  thead {
+    tr {
+      th {
+        border: 1px solid gray;
+        padding: 10px 8px;
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        border: 1px solid gray;
+        padding: 10px 8px;
+      }
+    }
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
 }
