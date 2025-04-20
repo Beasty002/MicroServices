@@ -4,12 +4,14 @@ import { Route, Routes } from 'react-router-dom'
 import UsersPage from './features/User/UsersPage'
 import AccountingPage from './features/pages/AccountingPage'
 import LibraryPage from './features/Library/LibraryPage'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   return (
     <section className='bg-black/80 min-h-screen min-w-screen text-white flex gap-4'>
+      <ToastContainer/>
       <NavBar/>
-      <main className='px-4 py-3 max-h-screen overflow-auto'>
+      <main className='px-4 py-5 max-h-screen overflow-y-auto flex-1'>
       <Routes>
         <Route path='/' element={<UsersPage/>}/>
         <Route path='/accounting' element={<AccountingPage/>}/>
