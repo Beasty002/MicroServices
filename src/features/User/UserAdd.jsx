@@ -1,4 +1,7 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { api_course, api_user } from "../../App";
+import { toast } from "react-toastify";
 
 const UserAdd = ({ overlay, type, id = null, setEdit = null }) => {
   const [formDetails, setFormDetails] = useState({
@@ -12,14 +15,7 @@ const UserAdd = ({ overlay, type, id = null, setEdit = null }) => {
     roll_number: "",
     course_id: "",
   });
-
-  const courseList = [
-    { course_id: "101", course_name: "Computer Science" },
-    { course_id: "102", course_name: "Mechanical Engineering" },
-    { course_id: "103", course_name: "Civil Engineering" },
-    { course_id: "104", course_name: "Electrical Engineering" },
-    { course_id: "105", course_name: "Business Administration" },
-  ];
+  const [courseList, setCourseList] = useState([]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -40,13 +36,16 @@ const UserAdd = ({ overlay, type, id = null, setEdit = null }) => {
 
     try {
       if (type == "add") {
-        console.log("Form submitted:", formDetails);
+        const response = await axios.post(`${api_user}/students`, formDetails);
+        console.log("success fully added the student");
+        toast.success("Student has been added ssuccessfully");
       } else {
         console.log("User detail updated", { ...formDetails, student_id: id });
       }
       handleOverlay();
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 
@@ -56,22 +55,22 @@ const UserAdd = ({ overlay, type, id = null, setEdit = null }) => {
   };
 
   useEffect(() => {
-    const existinguser = {
-      id: 2,
-      first_name: "Jane",
-      middle_name: "",
-      last_name: "Smith",
-      phone_number: 9876543210,
-      dob: "1999-10-22",
-      address: "456 Oak Ave",
-      email: "jane.smith@example.com",
-      roll_number: 452,
-      course_id: "105",
+    const fetchAll = async () => {
+      try {
+        const courseData = await axios.get(`${api_course}/api/course`);
+        setCourseList(courseData.data);
+        console.log(courseData.data);
+      } catch (error) {
+        toast.error(error);
+        console.log(error);
+      }
     };
-    if (type === "edit") {
-      setFormDetails({ ...existinguser });
-    }
+    fetchAll();
   }, []);
+
+  useEffect(() => {
+    console.log(courseList);
+  }, [courseList]);
 
   return (
     <section className="text-xl">
@@ -159,11 +158,12 @@ const UserAdd = ({ overlay, type, id = null, setEdit = null }) => {
                 <option value="" disabled hidden>
                   -- Select a Course --
                 </option>
-                {courseList.map((course) => (
-                  <option key={course.course_id} value={course.course_id}>
-                    {course.course_name}
-                  </option>
-                ))}
+                {courseList.length > 0 &&
+                  courseList.map((course) => (
+                    <option key={course.id} value={course.id}>
+                      {course.name}
+                    </option>
+                  ))}
               </select>
             </div>
             <div className="flex flex-col flex-3">

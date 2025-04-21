@@ -68,14 +68,17 @@ const UserTable = ({ overlay }) => {
   };
   useEffect(() => {
     const fetchUsers = async () => {
+      console.log("fetch users called");
+
       try {
-        const userData = await axios.get(`${api_user}/students`);
+        const userData = await axios.get(`${api_user}/students `);
         console.log(userData.data);
+        console.log("data called");
 
         setUserList(userData.data);
       } catch (error) {
-        toast.error(error);
-        console.log(error);
+        console.log("There was an error fetching data :");
+        console.log(error, "Error aayo k");
       }
     };
     fetchUsers();

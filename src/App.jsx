@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 export const api_user = import.meta.env.VITE_BASE_USER;
 export const api_book = import.meta.env.VITE_BASE_BOOKS;
 export const api_account = import.meta.env.VITE_BASE_ACCOUNTING;
+export const api_course = import.meta.env.VITE_BASE_COURSE;
 
 const App = () => {
   return (
