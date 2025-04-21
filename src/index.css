@@ -16,20 +16,19 @@ a.active {
 }
 
 /* Remove arrows in Firefox */
-.no-spinner[type=number] {
+.no-spinner[type="number"] {
   -moz-appearance: textfield;
 }
-  
+
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
+  transition: background-color 600000s 0s, color 600000s 0s;
 }
 input[data-autocompleted] {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
-
-/*  */
+/* Accounting Page */
 .table {
   thead {
     tr {
@@ -55,3 +54,62 @@ input[data-autocompleted] {
   margin-bottom: 20px;
   align-items: center;
 }
+
+.input {
+  width: 150px;
+  height: 35px;
+  border: none;
+  background-color: white;
+  color: black;
+  font-size: large;
+}
+
+.formCss {
+  display: flex;
+  padding: 35px 20px;
+  font-size: x-large;
+}
+
+.books {
+  width: 35%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.button {
+  background-color: rgb(50, 103, 238);
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-decoration: none;
+  margin: 8px 5px;
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input {
+  padding: 8px;
+  font-size: 15px;
+}
+
+.button,
+.btn {
+  padding: 8px 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.books {
+  margin-top: 15px;
+  padding: 8px;
+  font-size: 15px;
+}
+

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import BorrowPage from "./BorrowPage";
 const initialBorrowBooks = [
   {
     id: 1,
@@ -11,7 +13,7 @@ const initialBorrowBooks = [
   },
   {
     id: 2,
-    studentName: "Suman DevKota",
+    studentName: "Suman Devkota",
     bookName: "Book of Five Rings",
     borrowDate: "",
     returndate: "",
@@ -25,25 +27,44 @@ const initialBorrowBooks = [
     returndate: "",
     action: "",
   },
+  {
+    id: 4,
+    studentName: "Sandy Magar",
+    bookName: "Da Vinci Code",
+    borrowDate: "",
+    returndate: "",
+    action: "",
+  },
 ];
 
+// const toaster = () => {
+//   toast.error("Vayooo");
+// };
+
 const AccountingPage = () => {
+  const [add, setAdd] = useState(false);
+  const toggleAdd = () => setAdd(!add);
+  const [borrowPopup, setBorrowPopup] = useState(false);
+
   return (
     <div>
       <nav className="navbar">
         <h1 className="text-3xl font-bold">Online Book Store</h1>
-        <div>
+        <div className="flex gap-5">
           <button
-            onClick={() => handleClick(entry.id)}
             className="rounded-sm bg-blue-500 text-xl px-8 py-1"
+            onClick={() => setBorrowPopup(true)}
           >
-            Add
+            Add{" "}
+          </button>
+          <button className="rounded-sm bg-blue-500 text-xl px-8 py-1">
+            Return
           </button>
         </div>
       </nav>
       <table border="1" cellPadding="10" className="table">
         <thead>
-          <tr className="">
+          <tr>
             <th>S.N.</th>
             <th>Student Name</th>
             <th>Book Name</th>
@@ -65,6 +86,7 @@ const AccountingPage = () => {
           ))}
         </tbody>
       </table>
+      {borrowPopup && <BorrowPage />}
     </div>
   );
 };
